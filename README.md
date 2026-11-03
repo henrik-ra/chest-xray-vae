@@ -58,3 +58,26 @@ validation images) and 624 test images. Samples come from the N(0, I) prior and 
 10-component Gaussian mixture fitted to the training posterior means (`--gmm-components`).
 
 The tables of the report use several sample draws per model; `evaluate` computes one draw.
+
+## Results and checkpoint of the report
+
+`results/` holds the outputs of the final model:
+
+| File | Content |
+|---|---|
+| `test_metrics.json` | FID / IS on the 624 test images: reconstructions, prior samples (10 draws), GMM samples (6 draws), real images |
+| `validation_metrics.json` | FID / IS on the 537 validation images (one draw) |
+| `history.json` | training and validation loss terms per epoch |
+| `loss_curves.pdf`, `progress.png` | loss curves and fixed-noise samples during training |
+| `figures/` | Figures 1-3 of the report |
+
+The trained weights (`vae_best.pt`, epoch 137, 125 MB) are attached to the GitHub release
+`v1.0` because they exceed GitHub's file size limit. To evaluate them:
+
+```
+mkdir -p runs/final
+# download vae_best.pt from the release into runs/final/
+python -m clean_vae.evaluate --data-root <path/to/chest_xray>
+```
+
+SHA-256 of `vae_best.pt`: `b23bd822d4de4fbdc73301814a38967478b3423904ca5118eb676a0c3f69a128`
