@@ -1,0 +1,10 @@
+torch
+torchvision
+numpy
+scipy
+Pillow
+matplotlib
+kagglehub
+pytorch-ignite
+pytorch-fid
+scikit-learn
